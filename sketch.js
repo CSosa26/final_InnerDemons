@@ -53,6 +53,11 @@ function draw() {
 
 if (screen == 1) { // insert character selection screen code here
 
+
+
+  //Player Health
+  P1Health();
+  P2Health();
 }
 
 if (screen == 2) { // insert stage selection screen code here
