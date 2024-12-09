@@ -69,8 +69,8 @@ walk2SE = loadSound("music/WalkingSE2.mp3");
 mainImg = loadImage("images/Menus/mainmenu.png");
 stageImg = loadImage("images/Menus/stageselect.png");
 font = loadFont("fonts/Iceberg-Regular.ttf");
-tyler = loadImage("images/menus/tyler.png");
-carlos = loadImage("images/menus/carlos.png");
+tyler = loadImage("images/Menus/tyler.png");
+carlos = loadImage("images/Menus/carlos.png");
 }
 
 function unloadMusic() {
