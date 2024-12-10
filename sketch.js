@@ -23,6 +23,19 @@ let carlos;
 let carlosX = 1300;
 let carlosY = 400;
 
+let pxlCarlosIdle, pxlCarlosPunch, pxlCarlosCrouch, pxlCarlosJump, pxlCarlosBlock, pxlCarlosWalk;
+let pxlCarlosIdleR, pxlCarlosPunchR, pxlCarlosCrouchR, pxlCarlosJumpR, pxlCarlosBlockR, pxlCarlosWalkR;
+
+let toonCarlosIdle, toonCarlosPunch, toonCarlosCrouch, toonCarlosJump, toonCarlosBlock, toonCarlosWalk;
+let toonCarlosIdleR, toonCarlosPunchR, toonCarlosCrouchR, toonCarlosJumpR, toonCarlosBlockR, toonCarlosWalkR;
+
+let cruzCarlosIdle, cruzCarlosPunch, cruzCarlosCrouch, cruzCarlosJump, cruzCarlosBlock, cruzCarlosWalk;
+let cruzCarlosIdleR, cruzCarlosPunchR, cruzCarlosCrouchR, cruzCarlosJumpR, cruzCarlosBlockR, cruzCarlosWalkR;
+
+let darkCarlosIdle, darkCarlosPunch, darkCarlosCrouch, darkCarlosJump, darkCarlosBlock, darkCarlosWalk;
+let darkCarlosIdleR, darkCarlosPunchR, darkCarlosCrouchR, darkCarlosJumpR, darkCarlosBlockR, darkCarlosWalkR;
+
+let p1Char, p2Char;
 
 let MAXHEALTH = 100;
 let PUNCHDAMAGE = 5;
@@ -43,34 +56,98 @@ let playSE = true;
 
 function preload() {
   //Player Health
-P1HealthImg = loadImage("images/Health/P1Health.png");
-P2HealthImg = loadImage("images/Health/P2Health.png");
-BoarderImg = loadImage("images/Health/BoarderHealth.png");
+  P1HealthImg = loadImage("images/Health/P1Health.png");
+  P2HealthImg = loadImage("images/Health/P2Health.png");
+  BoarderImg = loadImage("images/Health/BoarderHealth.png");
 
-//Audio/SE/Music
-mainscreenMusic = loadSound("music/MainScreenMusic.mp3");
-fightscreenMusic1 = loadSound("music/FightingMusic1.mp3");
-fightscreenMusic2 = loadSound("music/FightingMusic2.mp3");
-fightscreenMusic3 = loadSound("music/FightingMusic3.mp3");
-MainButtonSE = loadSound("music/MainScreenButton.mp3");
-fight321SE = loadSound("music/321FightSE.mp3");
-blockSE = loadSound("music/BlockSE.mp3");
-punchSE = loadSound("music/PunchSE1.mp3");
-crouchSE = loadSound("music/Crouch.mp3");
-jumpSE = loadSound("music/JumpSE.mp3");
-cButtonSE = loadSound("music/ButtonSE1.mp3");
-p1ButtonSE = loadSound("music/ButtonSE2.mp3");
-p2ButtonSE = loadSound("music/ButtonSE3.mp3");
-fatalitySE = loadSound("music/FatalitySE.mp3");
-walk1SE = loadSound("music/WalkingSE.mp3");
-walk2SE = loadSound("music/WalkingSE2.mp3");
+  //Audio/SE/Music
+  mainscreenMusic =  loadSound("music/MainScreenMusic.mp3");
+  fightscreenMusic1 = loadSound("music/FightingMusic1.mp3");
+  fightscreenMusic2 = loadSound("music/FightingMusic2.mp3");
+  fightscreenMusic3 = loadSound("music/FightingMusic3.mp3");
+  MainButtonSE = loadSound("music/MainScreenButton.mp3");
+  fight321SE = loadSound("music/321FightSE.mp3");
+  blockSE = loadSound("music/BlockSE.mp3");
+  punchSE = loadSound("music/PunchSE1.mp3");
+  crouchSE = loadSound("music/Crouch.mp3");
+  jumpSE = loadSound("music/JumpSE.mp3");
+  cButtonSE = loadSound("music/ButtonSE1.mp3");
+  p1ButtonSE = loadSound("music/ButtonSE2.mp3");
+  p2ButtonSE = loadSound("music/ButtonSE3.mp3");
+  fatalitySE = loadSound("music/FatalitySE.mp3");
+  walk1SE = loadSound("music/WalkingSE.mp3");
+  walk2SE = loadSound("music/WalkingSE2.mp3");
 
-//Screens
-mainImg = loadImage("images/Menus/mainmenu.png");
-stageImg = loadImage("images/Menus/stageselect.png");
-font = loadFont("fonts/Iceberg-Regular.ttf");
-tyler = loadImage("images/Menus/tyler.png");
-carlos = loadImage("images/Menus/carlos.png");
+  //Screens
+  mainImg = loadImage("images/Menus/mainmenu.png");
+  stageImg = loadImage("images/Menus/stageselect.png");
+  font = loadFont("fonts/Iceberg-Regular.ttf");
+  tyler = loadImage("images/Menus/tyler.png");
+  carlos = loadImage("images/Menus/carlos.png");
+
+  //Player PXL
+  pxlCarlosIdle = loadImage("images/CarlosPxl/idle.gif");
+  pxlCarlosPunch = loadImage("images/CarlosPxl/Punch.gif");
+  // pxlCarlosCrouch = loadImage("images/CarlosPxl/C");
+  pxlCarlosJump = loadImage("images/CarlosPxl/Jump.gif");
+  pxlCarlosBlock = loadImage("images/CarlosPxl/Block.gif");
+  pxlCarlosWalk = loadImage("images/CarlosPxl/Walking.gif");
+
+
+  pxlCarlosIdleR = loadImage("images/CarlosPxl/RIdle.gif");
+  pxlCarlosPunchR = loadImage("images/CarlosPxl/RPunch.gif");
+  // // pxlCarlosCrouchR = loadImage("images/CarlosPxl/C");
+  // pxlCarlosJumpR = loadImage("images/CarlosPxl/RJump.gif");
+  pxlCarlosBlockR = loadImage("images/CarlosPxl/RBlock.gif");
+  pxlCarlosWalkR = loadImage("images/CarlosPxl/RWalking.gif");
+
+  //Player Toon
+  toonCarlosIdle = loadImage("images/CarlosDrawing/Idle/LIdle.gif");
+  toonCarlosPunch = loadImage("images/CarlosDrawing/Punch/LPunch.png");
+  // toonCarlosCrouch = loadImage("images/CarlosPxl/C");
+  toonCarlosJump = loadImage("images/CarlosDrawing/Jump/LJump.png");
+  toonCarlosBlock = loadImage("images/CarlosDrawing/Block/LBlock.png");
+  toonCarlosWalk = loadImage("images/CarlosDrawing/Walk/LWalk.gif");
+
+
+  toonCarlosIdleR = loadImage("images/CarlosDrawing/Idle/RIdle.gif");
+  toonCarlosPunchR = loadImage("images/CarlosDrawing/Punch/RPunch.png");
+  // // toonCarlosCrouchR = loadImage("images/CarlosPxl/C");
+  toonCarlosJumpR = loadImage("images/CarlosDrawing/Jump/RJump.png");
+  toonCarlosBlockR = loadImage("images/CarlosDrawing/Block/RBlock.png");
+  toonCarlosWalkR = loadImage("images/CarlosDrawing/Walk/RWalk.gif");
+
+  //Player Cruz
+  cruzCarlosIdle = loadImage("images/CarlosCruzDrawing/Idle/LIdle.gif");
+  cruzCarlosPunch = loadImage("images/CarlosCruzDrawing/Punch/LPunch.png");
+  // cruzCarlosCrouch = loadImage("images/CarlosPxl/C");
+  cruzCarlosJump = loadImage("images/CarlosCruzDrawing/Jump/LJump.png");
+  cruzCarlosBlock = loadImage("images/CarlosCruzDrawing/Block/LBlock.png");
+  cruzCarlosWalk = loadImage("images/CarlosCruzDrawing/Walk/LWalk.gif");
+
+
+  cruzCarlosIdleR = loadImage("images/CarlosCruzDrawing/Idle/RIdle.gif");
+  cruzCarlosPunchR = loadImage("images/CarlosCruzDrawing/Punch/RPunch.png");
+  // // cruzCarlosCrouchR = loadImage("images/CarlosPxl/C");
+  cruzCarlosJumpR = loadImage("images/CarlosCruzDrawing/Jump/RJump.png");
+  cruzCarlosBlockR = loadImage("images/CarlosCruzDrawing/Block/RBlock.png");
+  cruzCarlosWalkR = loadImage("images/CarlosCruzDrawing/Walk/RWalk.gif");
+
+  //PLayer Dark
+  darkCarlosIdle = loadImage("images/CarlosPxl/BlackCR/LblIdle.gif");
+  darkCarlosPunch = loadImage("images/CarlosPxl/BlackCR/LblPunch.gif");
+  // darkCarlosCrouch = loadImage("images/CarlosPxl/C");
+  darkCarlosJump = loadImage("images/CarlosPxl/BlackCR/LblJump.gif");
+  darkCarlosBlock = loadImage("images/CarlosPxl/BlackCR/LblBlock.gif");
+  darkCarlosWalk = loadImage("images/CarlosPxl/BlackCR/LblWaking.gif");
+
+
+  darkCarlosIdleR = loadImage("images/CarlosPxl/BlackCR/RblIdle.gif");
+  darkCarlosPunchR = loadImage("images/CarlosPxl/BlackCR/RblPunch.gif");
+  // // darkCarlosCrouchR = loadImage("images/CarlosPxl/C");
+  darkCarlosJumpR = loadImage("images/CarlosPxl/BlackCR/RblJump.gif");
+  darkCarlosBlockR = loadImage("images/CarlosPxl/BlackCR/RblBlock.gif");
+  darkCarlosWalkR = loadImage("images/CarlosPxl/BlackCR/RblWalking.gif");
 }
 
 function unloadMusic() {
@@ -91,14 +168,16 @@ function setup() {
   stages[0] = loadImage("images/Menus/ballpit.png");
   stages[1] = loadImage("images/Menus/plane.png");
   stages[2] = loadImage("images/Menus/wafflehouse.png");
-  chars[0] = loadImage("images/Menus/LJump.png");
-  chars[1] = loadImage("images/Menus/RJump.png");
-  chars[2] = loadImage("images/Menus/LPunch.png");
-  chars[3] = loadImage("images/Menus/RPunch.png");
+  chars[0] = pxlCarlosIdle;
+  chars[1] = loadImage("images/CarlosDrawing/Idle/RIdle.gif");
+  chars[2] = loadImage("images/CarlosCruzDrawing/Idle/RIdle.gif");
+  chars[3] = loadImage("images/CarlosPxl/BlackCR/RblIdle.gif");
   stageP1.stage = 0;
   stageP2.stage = 0;
   stageP1.char = 0;
   stageP2.char = 0;
+  p1Char = 0;
+  p2Char = 0;
   textFont(font);
   stroke(255);
   // fighter(health, punch, moveX, playerNum)
@@ -107,12 +186,6 @@ function setup() {
 }
 
 function draw() {
-
-  // Experiment (When player blocks, don't move)
-  // if(!bl){
-  //move
-  //else don't move
-  // }
   if (menu == "pressme") {
     background(100);
     textAlign(CENTER);
@@ -135,9 +208,6 @@ function draw() {
     }
     
   }
-
-
-
   if (menu == "main") {    // insert main screen code here, replace below
     if (play) { 
       mainscreenMusic.play();
@@ -183,51 +253,49 @@ function draw() {
      menu = "char";
    }
   }
-if (menu == "char") { // insert character selection screen code here
+  if (menu == "char") { // insert character selection screen code here
+    displayCharSelect();
 
-  displayCharSelect();
-
-  textAlign(LEFT);
-  textSize(30);
-  text('C to Confirm. \nSPACE to Continue.', 20, 500);
-  console.log(screen);
-  console.log(menu);
-  if (keyIsDown(32) && pickedChar == true) { //space bar
-    //Button Sound Effect
-
-    MainButtonSE.play();
-    menu = "stage"; // Change number to 1 after input character and stage selection screen
+    textAlign(LEFT);
+    textSize(30);
+    text('C to Confirm. \nSPACE to Continue.', 20, 500);
+    console.log(screen);
+    console.log(menu);
+    if (keyIsDown(32) && pickedChar == true) { //space bar
+      //Button Sound Effect
+      MainButtonSE.play();
+      menu = "stage"; // Change number to 1 after input character and stage selection screen
+    }
   }
-}
 
-if (menu == "stage") { // insert stage selection screen code here
-  displayStageSelect();
-  textAlign(LEFT);
-  textSize(30);
-  text('C to Confirm. \nSPACE to Continue.', 20, 500);
-  console.log(screen);
-  console.log(menu);
-  if (keyIsDown(32) && pickedStage == true) {
-          //Button Sound Effect
-    MainButtonSE.play();
-    //space bar
-    picks[0] = stageP1.stage;
-    picks[1] = stageP2.stage;
-    randomI = int(random(0, picks.length));
-    chosen.num = picks[randomI];
-    chosen.name = setStageName(chosen.num);
-    menu = "fight" // Change number to 1 after input character and stage selection screen
+  if (menu == "stage") { // insert stage selection screen code here
+    displayStageSelect();
+    textAlign(LEFT);
+    textSize(30);
+    text('C to Confirm. \nSPACE to Continue.', 20, 500);
+    console.log(screen);
+    console.log(menu);
+    if (keyIsDown(32) && pickedStage == true) {
+            //Button Sound Effect
+      MainButtonSE.play();
+      //space bar
+      picks[0] = stageP1.stage;
+      picks[1] = stageP2.stage;
+      randomI = int(random(0, picks.length));
+      chosen.num = picks[randomI];
+      chosen.name = setStageName(chosen.num);
+      menu = "fight" // Change number to 1 after input character and stage selection screen
+    }
   }
-}
 
   // Fighting Arena screen
   if (menu == "fight") {
 
+    //Music
     if (playSE) {
-      fight321SE.play();
-      playSE = false;
+        fight321SE.play();
+        playSE = false;
     }
-
 
     background(220);
     imageMode(CORNER);
@@ -242,7 +310,6 @@ if (menu == "stage") { // insert stage selection screen code here
     else{
       text(countdown - 1, width/2, height/2);
     }
-    
     
 
     if(frameCount % 30 == 0 && countdown > 0){
@@ -263,13 +330,15 @@ if (menu == "stage") { // insert stage selection screen code here
       image(stages[chosen.num], 0, 0);
       p1.move();
       p2.move();
+      p1.playerPos(p2.plPosition(), p1Char); 
+      p2.playerPos(p1.plPosition(), p2Char);
       console.log(screen);
       console.log(menu);
       //Player attacks
       if (p1.attack(p2.plPosition()) && !p2.playerBlock) {
         p2.takeDamage();
       }
-      if (p2.attack(p1.plPosition()))
+      if (p2.attack(p1.plPosition()) && !p1.playerBlock)
         p1.takeDamage();
 
       if(chosen.num == 1){
@@ -291,12 +360,12 @@ if (menu == "stage") { // insert stage selection screen code here
         carlosX-=2;
       }
       imageMode(CORNER);  
-    //Player Health
-    P1Health();
-    P2Health();
+      //Player Health
+      P1Health();
+      P2Health();
 
-    if (p1.getHealth() == 0 || p2.getHealth() == 0)
-      menu = "ko";
+      if (p1.getHealth() == 0 || p2.getHealth() == 0)
+        menu = "ko";
     }
     
 
@@ -378,474 +447,6 @@ if (menu == "stage") { // insert stage selection screen code here
         loop();
       }, 3000);
   }
-
-}
-
-function keyPressed(){
-  if(key == 'b'){
-    if(menu == "next"){
-      menu = "stage";
-      pickedStage = false;
-    }
-    if(menu == "stage"){
-      menu = "char";
-    }
-  }
-  if(key == 'e'){
-    if(menu == "char"){
-      menu = "stage";
-    }
-    if(menu == "stage" && pickedStage == true){
-      
-    }
-      
-  }
-  if(key == 'd'){
-    p1ButtonSE.play();
-    if(menu == "stage"){
-      if(stageP1.stage == 2){
-        stageP1.stage = 0;
-      }
-      else{
-        stageP1.stage++;
-      }
-    }
-    if(menu == "char"){
-      if(stageP1.char == 3){
-        stageP1.char = 0;
-      }
-      else{
-        stageP1.char++;
-      }
-    }
-  }
-  if(key == 'a'){
-    p1ButtonSE.play();
-    if(menu == "stage"){
-      if(stageP1.stage == 0){
-        stageP1.stage = 2;
-      }
-      else{
-        stageP1.stage--;
-      }
-    }
-    if(menu == "char"){
-      if(stageP1.char == 0){
-        stageP1.char = 3;
-      }
-      else{
-        stageP1.char--;
-      }
-    }
-  }
-
-  if(keyCode == RIGHT_ARROW){
-    p2ButtonSE.play();
-    if(menu == "stage"){
-      p2ButtonSE.play();
-      if(stageP2.stage == 2){
-        stageP2.stage = 0;
-      }
-      else{
-        stageP2.stage++;
-      }
-    }
-    if(menu == "char"){
-      if(stageP2.char == 3){
-        stageP2.char = 0;
-      }
-      else{
-        stageP2.char++;
-      }
-    }
-  }
-  if(keyCode == LEFT_ARROW){
-    p2ButtonSE.play();
-    if(menu == "stage"){
-      if(stageP2.stage == 0){
-        stageP2.stage = 2;
-      }
-      else{
-        stageP2.stage--;
-      }
-    }
-    if(menu == "char"){
-      if(stageP2.char == 0){
-        stageP2.char = 3;
-      }
-      else{
-        stageP2.char--;
-      }
-    }
-  }
-  if(key == 'c'){
-    if(menu == "char"){
-      if (!pickedChar) 
-        cButtonSE.play();
-      pickedChar = true;
-    }
-    if(menu == "stage"){
-      if (!pickedStage)
-        cButtonSE.play();
-      pickedStage = true;
-    }
-    if(menu == "direct"){
-      if (instructDone)
-        cButtonSE.play();
-      instructDone = true;
-    }
-  }
-}
-function setStageName(number){
-  if(number == 0){
-    return "Pit of Balls";
-  }
-  if(number == 1){
-    return "Air Tyler";
-  }
-  if(number == 2){
-    return "The Dark Waffle";
-  }
-}
-
-function displayStageSelect(){
-  imageMode(CORNER);
-  image(stageImg, 0, 0);
-  fill(0);
-  textAlign(CENTER);
-  fill(255);
-  textSize(50);
-  text('Choose a stage!', width/2, 50);
-  
-  imageMode(CENTER);
-  image(stages[stageP1.stage], width/4, height/2, 600, 300);
-  image(stages[stageP2.stage], 3*width/4, height/2, 600, 300);
-  textSize(40);
-  text('Player 1: A and D Buttons', width/4, 125);
-  text('Player 2: Left and Right Arrows', 3*width/4, 125);
-  for(let i = 0; i < stages.length; i++){
-    image(stages[i], width/3 + 200*i, 525, 200, 100);
-  }
-  textAlign(RIGHT);
-  fill(0, 0, 255);
-  ellipse(width/3 + 200*stageP1.stage - 70, 460, 75, 75, 50);
-  fill(255);
-  text('P1', width/3 + 200*stageP1.stage - 150, 525, 200, 100, 50);
-  fill(255, 0, 0);
-  ellipse(width/3 + 200*stageP2.stage + 30, 460, 75, 75, 50);
-  fill(255);
-  text('P2', width/3 + 200*stageP2.stage - 50, 525, 200, 100, 50);
-  text("Press C to confirm", )
-}
-function displayCharSelect(){
-  imageMode(CORNER);
-  image(stageImg, 0, 0);
-  fill(0);
-  textAlign(CENTER);
-  fill(255);
-  textSize(50);
-  text('Choose a character!', width/2, 50);
-  textSize(40);
-
-  imageMode(CENTER);
-  image(chars[stageP1.char], width/4, height/2, 320, 320);
-  image(chars[stageP2.char], 3*width/4, height/2, 320, 320);
-  text('Player 1: A and D Buttons', width/4, 125);
-  text('Player 2: Left and Right Arrows', 3*width/4, 125);
-  for(let i = 0; i < chars.length; i++){
-    image(chars[i], width/3 + 160*i, 525, 160, 160);
-  }
-  textAlign(RIGHT);
-  fill(0, 0, 255);
-  ellipse(width/3 + 160*stageP1.char - 70, 460, 75, 75, 50);
-  fill(255);
-  text('P1', width/3 + 160*stageP1.char - 150, 525, 200, 100, 50);
-  fill(255, 0, 0);
-  ellipse(width/3 + 160*stageP2.char + 30, 460, 75, 75, 50);
-  fill(255);
-  text('P2', width/3 + 160*stageP2.char - 50, 525, 200, 100, 50);
-}
-
-//Player 1 Health Bar
-function P1Health() {
-  //P1
-  image(P1HealthImg, -10, 8, 515, 75);
-  rectMode(CORNER);
-  strokeWeight(0);
-  fill(255, 0, 0);
-  let healthWidth = map(p1.getHealth(), 0, MAXHEALTH, 0, 470);
-  rect(15, 15, healthWidth, 32);
-
-  strokeWeight(4);
-  noFill();
-  rectMode(CENTER);
-  imageMode(CORNER);
-  image(BoarderImg, -5, 10, 510, 40);
-}
-
-//Player 2 Health Bar
-function P2Health() {
-  //P2
-  image(P2HealthImg, 690, 8, 515, 75);
-  rectMode(CORNER);
-  strokeWeight(0);
-  fill(3, 44, 252);
-  let healthWidth = map(p2.getHealth(), 0, MAXHEALTH, 0, -470);
-  rect(1180, 15, healthWidth, 32);
-
-  stroke(0);
-  strokeWeight(4);
-  noFill();
-  rectMode(CENTER);
-  imageMode(CORNER);
-  image(BoarderImg, 690, 10, 510, 40);
-}
-
-
-//Creates character stats
-class fighter {
-  constructor(health, punch, moveX, playerNum) {
-    this.health = health;
-    this.punch = punch;
-    this.block = false;
-    this.moveX = moveX;
-    // this.moveY = 500;
-    this.jump = false;
-    this.jumpingSpeed = 5;
-    this.jmpUP = true;
-    this.playerNum = playerNum;
-    this.atkCooldown = true;
-    this.playerBlock = false;
-    this.walkCooldown = 0;
-
-    //Defines the starting players position
-    if (this.playerNum === 1) {
-      this.x = 200;
-      this.y = 500;
-    } else if (this.playerNum === 2) {
-      this.x = 800;
-      this.y = 500;
-    }
-
-    // defines the controls based on the player
-    if (this.playerNum === 1) {
-      this.control = {
-        up: 87, // W
-        down: 83, // S
-        left: 65, // A
-        right: 68, // D
-        punch: 84, //T
-        block: 89 // Y
-      };
-      // this.ctrUp = 87;
-      // this.ctrDown = 83;
-      // this.ctrlLef = 65;
-      // this.ctrRight = 68;
-    } else if (this.playerNum === 2) {
-      this.control = {
-        up: 38, // Arrow UP
-        down: 40, // Arrow Down
-        left: 37, // Arrow Left
-        right: 39, // Arrow Right
-        punch: 221, // KEY ]
-        block: 220 // KEY \
-      };
-      // this.ctrUp = 38;
-      // this.ctrDown = 40;
-      // this.ctrlLef = 37;
-      // this.ctrRight = 39;
-    }
-  }
-
-  //Returns the players X position on the screen
-  plPosition() {
-    let x = this.x;
-    let y = this.y;
-    return [x,y];
-  }
-
-  walkSound() {
-    if (this.walkCooldown == 0 && this.jump == false) {
-      if (this.playerNum === 1) 
-        walk1SE.play();
-      else
-        walk2SE.play();
-    }
-    this.walkCooldown++;
-    if (this.walkCooldown >= 10)
-      this.walkCooldown = 0;
-  }
-
-  // Movement Controls
-  move() {
-
-    // Player
-    if(keyIsDown(this.control.block)) {
-      if (!this.playerBlock)
-        blockSE.play();
-      this.playerBlock = true;
-    } else {
-      this.playerBlock = false;
-    }
-
-
-    // Movements: left, rigth, and jump
-    if (keyIsDown(this.control.left) && this.x > 50 && !this.playerBlock) {
-      this.x -= this.moveX;
-      this.walkSound();
-    } else if (keyIsDown(this.control.right) && this.x < width - 50 && !this.playerBlock) {
-      this.x += this.moveX;
-      this.walkSound();
-    } else if (keyIsDown(this.control.up) && !this.jump && !this.playerBlock) {
-      this.jump = true;
-      this.jumpingSpeed = -300;
-      jumpSE.play();
-    }
-
-    // Movement: down
-    if (keyIsDown(this.control.down)) {
-      if (this.y != 600)
-        crouchSE.play();
-      this.y = 600;
-    } else {
-      this.y = 500;
-    }
-
-    // Jump Mech.
-    if (this.jump) {
-      this.y += this.jumpingSpeed;
-      this.jumpingSpeed += 9.1; // Gravity effect
-
-      // Check if player landed
-      if (this.y >= 500) {
-        this.y = 500;
-        this.jump = false;
-        this.jumpingSpeed = 0;
-      }
-    }
-
-    // Updates the visual drawing
-    rect(this.x, this.y, 100, 200);
-  }
-
-  // Creates the players attack hitbox
-  // Returns the hitbox
-  attack(pos) {
-    let connected = false;
-    if (keyIsDown(this.control.punch) && this.atkCooldown) {
-      punchSE.play();
-      rectMode(CORNER);
-      fill(0);
-      if (pos[0] > this.x) {
-        rect(this.x - 50, this.y, 200, 25);
-        connected = this.hitboxTest(pos, 1);
-      } else if (pos[0] < this.x) {
-        rect(this.x + 50, this.y, -200, 25);
-        connected = this.hitboxTest(pos, 2);
-      } else {
-        console.log("No position");
-      }
-
-      this.atkCooldown = false; 
-    }
-    rectMode(CENTER);
-    return connected;
-  }
-//Grabs player health
-  getHealth() {
-    return this.health;
-  }
-//Takes damage
-  takeDamage() {
-    this.health -= this.punch;
-    if (this.health <= 0)
-      this.health = 0;
-  }
-
-//checks player pos hitbox and player pos attack hitbox
-//when overlaped, it because true.
-//ellipse shows where the overlap happends
-  hitboxTest(pos, number) {
-    if (number == 1) {
-      ellipse(this.x + 50, this.y, 5,5);
-
-      if (this.x + 50 >= pos[0] - 50 &&
-        this.y <= pos[1] + 100 &&
-        this.y >= pos[1] - 100
-      )
-      return true;
-
-      ellipse(this.x + 50, this.y + 25, 5,5);
-
-      if (this.x + 50 >= pos[0] - 50 &&
-        this.y + 25 <= pos[1] + 100 &&
-        this.y + 25 >= pos[1] - 100
-      )
-      return true;
-
-      ellipse(this.x + 150, this.y, 5,5);
-
-      if (this.x + 150 >= pos[0] - 50 &&
-        this.y <= pos[1] + 100 &&
-        this.y >= pos[1] - 100
-      )
-      return true;
-      
-      ellipse(this.x + 150, this.y + 25, 5,5);
-
-      if (this.x + 150 >= pos[0] - 50 &&
-        this.y + 25 <= pos[1] + 100 &&
-        this.y + 25 >= pos[1] - 100
-      )
-      return true;
-    }
-    else {
-      ellipse(this.x - 50, this.y, 5,5);
-
-      if (this.x - 50 <= pos[0] + 50 &&
-        this.y <= pos[1] + 100 &&
-        this.y >= pos[1] - 100
-      )
-
-      return true;
-
-      ellipse(this.x - 50, this.y + 25, 5,5);
-
-      if (this.x - 50 <= pos[0] + 50 &&
-        this.y + 25 <= pos[1] + 100 &&
-        this.y + 25 >= pos[1] - 100
-      )
-
-      return true;
-
-      ellipse(this.x - 150, this.y, 5,5);
-
-      if (this.x - 150 <= pos[0] + 50 &&
-        this.y <= pos[1] + 100 &&
-        this.y >= pos[1] - 100
-      )
-
-      return true;
-
-      ellipse(this.x - 150, this.y + 25, 5,5);
-
-      if (this.x - 150 <= pos[0] + 50 &&
-        this.y + 25 <= pos[1] + 100 &&
-        this.y + 25 >= pos[1] - 100
-      )
-
-      return true;
-      
-    }
-
-  }
-
-  //Experiment (block function)
-  block() {
-    // if(keyIsDown(this.control.block)){
-    //   fill('blue');
-    // } else
-  }
 }
 
 // This function is called once when the key is released
@@ -853,11 +454,21 @@ function keyReleased() {
   // Player 1 Attack (F)
   if(keyCode === p1.control.punch) {
     p1.atkCooldown = true; // Allow attack again after key release
+    p1.action = 0;
   }
 
   // Player 2 Attack (Down Arrow)
   if(keyCode === p2.control.punch) {
     p2.atkCooldown = true; // Allow attack again after key release
+    p2.action = 0;
+  }
+
+  if(keyCode === p1.control.left){
+    p1.action = 0;
+  }
+
+  if(keyCode === p2.control.left){
+    p2.action = 0;
   }
 }
 
