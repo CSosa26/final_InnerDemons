@@ -166,6 +166,7 @@ class fighter {
         }
       }
   
+      strokeWeight(0);
       // Updates the visual drawing
       rect(this.x, this.y, 100, 200);
     }
@@ -179,11 +180,12 @@ class fighter {
         punchSE.play();
         rectMode(CORNER);
         fill(0);
+        strokeWeight(0);
         if (pos[0] > this.x) {
-          rect(this.x - 50, this.y - 100, 200, 25);
+          rect(this.x - 50, this.y - 100, 180, 25);
           connected = this.hitboxTest(pos, 1);
         } else if (pos[0] < this.x) {
-          rect(this.x + 50, this.y - 100, -200, 25);
+          rect(this.x + 50, this.y - 100, -180, 25);
           connected = this.hitboxTest(pos, 2);
         } else {
           console.log("No position");
@@ -342,7 +344,7 @@ class fighter {
         )
         return true;
   
-        ellipse(this.x + 150, this.y - 100, 5,5);
+        ellipse(this.x + 130, this.y - 100, 5,5);
   
         if (this.x + 150 >= pos[0] - 50 &&
           this.y <= pos[1] + 100 &&
@@ -350,7 +352,7 @@ class fighter {
         )
         return true;
         
-        ellipse(this.x + 150, this.y - 100 + 25, 5,5);
+        ellipse(this.x + 130, this.y - 100 + 25, 5,5);
   
         if (this.x + 150 >= pos[0] - 50 &&
           this.y + 25 <= pos[1] + 100 &&
@@ -377,7 +379,7 @@ class fighter {
   
         return true;
   
-        ellipse(this.x - 150, this.y - 100, 5,5);
+        ellipse(this.x - 130, this.y - 100, 5,5);
   
         if (this.x - 150 <= pos[0] + 50 &&
           this.y <= pos[1] + 100 &&
@@ -386,7 +388,7 @@ class fighter {
   
         return true;
   
-        ellipse(this.x - 150, this.y - 100 + 25, 5,5);
+        ellipse(this.x - 130, this.y - 100 + 25, 5,5);
   
         if (this.x - 150 <= pos[0] + 50 &&
           this.y + 25 <= pos[1] + 100 &&
