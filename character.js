@@ -121,6 +121,7 @@ class fighter {
         if (!this.playerBlock)
           blockSE.play();
         this.playerBlock = true;
+        this.action = 3;
       } else {
         this.playerBlock = false;
       }
@@ -161,6 +162,7 @@ class fighter {
           this.y = 500;
           this.jump = false;
           this.jumpingSpeed = 0;
+          this.action = 0;
         }
       }
   
@@ -173,7 +175,7 @@ class fighter {
     attack(pos) {
       let connected = false;
     //   this.attack = 2;
-      if (keyIsDown(this.control.punch) && this.atkCooldown) {
+      if (keyIsDown(this.control.punch) && this.atkCooldown && !this.playerBlock) {
         punchSE.play();
         rectMode(CORNER);
         fill(0);
@@ -194,130 +196,110 @@ class fighter {
       return connected;
     }
 
-    // if(action === 0){
-    //     //Idle
-    // } else if(action === 1){
-    //     //Move
-    // } else if(action === 2){
-    //     //attack
-    // } else if(action === 3){
-    //     //Block
-    // } else if(action === 4){
-    //     //Jump
-    // } else if(action === 5){
-    //     //Crouch
-    // }
     playerPos(pos, char){ 
         // looking Right
-        if (pos[0] > this.x) {
+        if (pos[0] >= this.x) {
             if(this.action === 0){
                 //Idle
                 switch(char) {
-                    case 0: image(pxlCarlosIdleR, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosIdleR, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosIdleR, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosIdleR, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosIdleR, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosIdleR, this.x - 65, this.y - 150, 150, 250); break;
+                    case 2: image(cruzCarlosIdleR, this.x - 65, this.y - 150, 150, 250); break;
+                    case 3: image(darkCarlosIdleR, this.x - 55, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosIdleR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 1){
                 //Move
                 switch(char) {
-                    case 0: image(pxlCarlosWalkR, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosWalkR, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosWalkR, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosWalkR, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosWalkR, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosWalkR, this.x - 65, this.y - 150, 140, 235); break;
+                    case 2: image(cruzCarlosWalkR, this.x - 65, this.y - 150, 150, 250); break;
+                    case 3: image(darkCarlosWalkR, this.x - 105, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosWalkR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 2){
                 //attack
                 switch(char) {
-                    case 0: image(pxlCarlosPunchR, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosPunchR, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosPunchR, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosPunchR, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosPunchR, this.x - 75, this.y - 150, 225, 250); break;
+                    case 1: image(toonCarlosPunchR, this.x - 65, this.y - 150, 200, 250); break;
+                    case 2: image(cruzCarlosPunchR, this.x - 65, this.y - 150, 200, 250); break;
+                    case 3: image(darkCarlosPunchR, this.x - 55, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosPunchR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 3){
                 //Block
                 switch(char) {
-                    case 0: image(pxlCarlosBlockR, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosBlockR, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosBlockR, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosBlockR, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosBlockR, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosBlockR, this.x - 65, this.y - 150, 150, 250); break;
+                    case 2: image(cruzCarlosBlockR, this.x - 65, this.y - 150, 150, 250); break;
+                    case 3: image(darkCarlosBlockR, this.x - 100, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosPunchR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 4){
-                //Jump
+                //Jump 
                 switch(char) {
-                    case 0: image(pxlCarlosJumpR, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosJumpR, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosJumpR, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosJumpR, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosJumpR, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosJumpR, this.x - 105, this.y - 150, 200, 250); break;
+                    case 2: image(cruzCarlosJumpR, this.x - 95, this.y - 150, 200, 250); break;
+                    case 3: image(darkCarlosJumpR, this.x - 75, this.y - 150, 215, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosPunchR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 5){
                 //Crouch
             }
-            // switch(char) {
-            //     case 0: image(pxlCarlosIdle, this.x, this.y, 100, 200); break;
-            //     case 1: image(pxlCarlosIdle, this.x, this.y, 100, 200); break; 
-            //     case 2: image(pxlCarlosIdle, this.x, this.y, 100, 200); break; 
-            //     case 3: image(pxlCarlosIdle, this.x, this.y, 100, 200); break;
-            //     default: console.log("Char Error"); break;
-            // }
         } else if (pos[0] < this.x) { //Looking left
             if(this.action === 0){
                 //Idle
                 switch(char) {
-                    case 0: image(pxlCarlosIdle, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosIdle, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosIdle, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosIdle, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosIdle, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosIdle, this.x - 85, this.y - 150, 150, 250); break;
+                    case 2: image(cruzCarlosIdle, this.x - 85, this.y - 150, 150, 250); break;
+                    case 3: image(darkCarlosIdle, this.x - 117, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosIdleR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 1){
                 //Move
                 switch(char) {
-                    case 0: image(pxlCarlosWalk, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosWalk, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosWalk, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosWalk, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosWalk, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosWalk, this.x - 85, this.y - 150, 140, 235); break;
+                    case 2: image(cruzCarlosWalk, this.x - 85, this.y - 150, 150, 250); break;
+                    case 3: image(darkCarlosWalk, this.x - 117, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosWalkR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 2){
                 //attack
                 switch(char) {
-                    case 0: image(pxlCarlosPunch, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosPunch, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosPunch, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosPunch, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosPunch, this.x - 150, this.y - 150, 225, 250); break;
+                    case 1: image(toonCarlosPunch, this.x - 135, this.y - 150, 200, 250); break;
+                    case 2: image(cruzCarlosPunch, this.x - 135, this.y - 150, 200, 250); break;
+                    case 3: image(darkCarlosPunch, this.x - 142, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosPunchR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 3){
                 //Block
                 switch(char) {
-                    case 0: image(pxlCarlosBlock, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosBlock, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosBlock, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosBlock, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosBlock, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosBlock, this.x - 85, this.y - 150, 150, 250); break;
+                    case 2: image(cruzCarlosBlock, this.x - 85, this.y - 150, 150, 250); break;
+                    case 3: image(darkCarlosBlock, this.x - 117, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosPunchR, this.x, this.y - 100, 150, 250);
             } else if(this.action === 4){
                 //Jump
                 switch(char) {
-                    case 0: image(pxlCarlosJump, this.x, this.y - 100, 150, 250); break;
-                    case 1: image(toonCarlosJump, this.x, this.y - 100, 150, 250); break;
-                    case 2: image(cruzCarlosJump, this.x, this.y - 100, 150, 250); break;
-                    case 3: image(darkCarlosJump, this.x, this.y - 100, 150, 250); break;
+                    case 0: image(pxlCarlosJump, this.x - 75, this.y - 150, 150, 250); break;
+                    case 1: image(toonCarlosJump, this.x - 105, this.y - 150, 200, 250); break;
+                    case 2: image(cruzCarlosJump, this.x - 105, this.y - 150, 200, 250); break;
+                    case 3: image(darkCarlosJump, this.x - 115, this.y - 150, 200, 250); break;
                     default: console.log("Char Error"); break;
                 }
                 // image(pxlCarlosPunchR, this.x, this.y - 100, 150, 250);

@@ -85,7 +85,7 @@ function preload() {
   tyler = loadImage("images/Menus/tyler.png");
   carlos = loadImage("images/Menus/carlos.png");
 
-  //Player PXL
+  // //Player PXL
   pxlCarlosIdle = loadImage("images/CarlosPxl/idle.gif");
   pxlCarlosPunch = loadImage("images/CarlosPxl/Punch.gif");
   // pxlCarlosCrouch = loadImage("images/CarlosPxl/C");
@@ -97,11 +97,11 @@ function preload() {
   pxlCarlosIdleR = loadImage("images/CarlosPxl/RIdle.gif");
   pxlCarlosPunchR = loadImage("images/CarlosPxl/RPunch.gif");
   // // pxlCarlosCrouchR = loadImage("images/CarlosPxl/C");
-  // pxlCarlosJumpR = loadImage("images/CarlosPxl/RJump.gif");
+  pxlCarlosJumpR = loadImage("images/CarlosPxl/RJump.gif");
   pxlCarlosBlockR = loadImage("images/CarlosPxl/RBlock.gif");
   pxlCarlosWalkR = loadImage("images/CarlosPxl/RWalking.gif");
 
-  //Player Toon
+  // //Player Toon
   toonCarlosIdle = loadImage("images/CarlosDrawing/Idle/LIdle.gif");
   toonCarlosPunch = loadImage("images/CarlosDrawing/Punch/LPunch.png");
   // toonCarlosCrouch = loadImage("images/CarlosPxl/C");
@@ -117,7 +117,7 @@ function preload() {
   toonCarlosBlockR = loadImage("images/CarlosDrawing/Block/RBlock.png");
   toonCarlosWalkR = loadImage("images/CarlosDrawing/Walk/RWalk.gif");
 
-  //Player Cruz
+  // //Player Cruz
   cruzCarlosIdle = loadImage("images/CarlosCruzDrawing/Idle/LIdle.gif");
   cruzCarlosPunch = loadImage("images/CarlosCruzDrawing/Punch/LPunch.png");
   // cruzCarlosCrouch = loadImage("images/CarlosPxl/C");
@@ -133,7 +133,7 @@ function preload() {
   cruzCarlosBlockR = loadImage("images/CarlosCruzDrawing/Block/RBlock.png");
   cruzCarlosWalkR = loadImage("images/CarlosCruzDrawing/Walk/RWalk.gif");
 
-  //PLayer Dark
+  // //PLayer Dark
   darkCarlosIdle = loadImage("images/CarlosPxl/BlackCR/LblIdle.gif");
   darkCarlosPunch = loadImage("images/CarlosPxl/BlackCR/LblPunch.gif");
   // darkCarlosCrouch = loadImage("images/CarlosPxl/C");
@@ -161,8 +161,10 @@ function unloadMusic() {
   }
 }
 
+let context ;
 function setup() {
   createCanvas(1200, 600);
+  // context = canvas.elt.getContext('2d', { willReadFrequently: true });
   rectMode(CENTER);
   frameRate(30);
   stages[0] = loadImage("images/Menus/ballpit.png");
@@ -466,15 +468,20 @@ function keyReleased() {
   if(keyCode === p1.control.left){
     p1.action = 0;
   }
+  if(keyCode === p1.control.right){
+    p1.action = 0;
+  }
+  if(keyCode === p1.control.block){
+    p1.action = 0;
+  }
 
   if(keyCode === p2.control.left){
     p2.action = 0;
   }
+  if(keyCode === p2.control.right){
+    p2.action = 0;
+  }
+  if(keyCode === p2.control.block){
+    p2.action = 0;
+  }
 }
-
-// function keyPressed(){ 
-//   // Player 1 Block (Y)
-//   if(keyCode === p1.control.block){
-
-//   }
-// }
